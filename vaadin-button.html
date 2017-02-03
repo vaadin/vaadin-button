@@ -22,13 +22,46 @@ This program is available under Apache License Version 2.0, available at https:/
   <template>
     <style>
       :host {
-        display: block;
+        align-items: flex-start;
+        background: linear-gradient(to bottom right, #fff, #eee);
+        border: 1px solid #999;
+        border-radius: 2px;
+        box-sizing: border-box;
+        cursor: default;
+        display: inline-block;
+        font-size: 15px;
+        letter-spacing: normal;
+        margin: 0;
+        padding: 2px 8px;
+        text-align: center;
+        text-indent: 0;
+        text-rendering: auto;
+        text-shadow: none;
+        text-transform: none;
+        word-spacing: normal;
+        user-select: none;
+      }
+
+      :host(:hover) {
+        border-color: #666;
+      }
+
+      :host([disabled]) {
+        color: #aaa !important;
+        background: #eee !important;
+        border-color: #aaa !important;
+        pointer-events: none;
+      }
+
+      :host([active]) {
+        background: linear-gradient(to bottom right, #eee, #fff);
       }
     </style>
+    <slot id="label"></slot>
   </template>
 
   <script>
-    class VaadinElement extends Polymer.Element {
+    class VaadinButton extends Polymer.Element {
       static get is() {
         return 'vaadin-button';
       }
@@ -36,11 +69,138 @@ This program is available under Apache License Version 2.0, available at https:/
       static get config() {
         return {
           properties: {
+            /**
+             * If true, the button is in the active state (clicked).
+             */
+            active: {
+              type: Boolean,
+              default: false,
+              reflectToAttribute: true
+            },
+
+            /**
+             * Specify that this control should have input focus when the page loads.
+             */
+            autofocus: {
+              type: Boolean
+            },
+
+            /**
+             * Indicates that this control is not available for interaction.
+             */
+            disabled: {
+              type: Boolean,
+              default: false,
+              reflectToAttribute: true,
+              observer: '_disabledChanged',
+            },
+
+            /**
+             * role="button"
+             */
+            role: {
+              type: String,
+              value: 'button',
+              reflectToAttribute: true,
+              readOnly: true
+            },
+
+            /**
+             * The position of the element in the tabbing navigation order for the current document.
+             */
+            tabindex: {
+              type: Number,
+              value: 0,
+              reflectToAttribute: true
+            },
+
+            /**
+             *
+             */
+            _previousTabIndex: Number
           }
         };
       }
+
+      ready() {
+        this._addListeners();
+
+        super.ready();
+
+        if (this.autofocus) {
+          window.requestAnimationFrame(function() {
+            this.focus();
+          }.bind(this));
+        }
+      }
+
+      activate(e) {
+        this.active = true;
+        Polymer.Base.fire('click', e, {
+          bubbles: false,
+          node: this
+        });
+      }
+
+      deactivate(e) {
+        this.active = false;
+      }
+
+      _disabledChanged(disabled) {
+        if (disabled) {
+          this._previousTabIndex = this.tabindex;
+          this.tabindex = -1;
+          this._removeListeners();
+        } else {
+          this.tabindex = this._previousTabIndex;
+          this._addListeners();
+        }
+      }
+
+      _addListeners() {
+        this.addEventListener('mousedown', this._handleMouseDown.bind(this));
+        this.addEventListener('touchstart', this._handleMouseDown.bind(this));
+        this.addEventListener('mouseup', this._handleMouseUp.bind(this));
+        this.addEventListener('touchend', this._handleMouseUp.bind(this));
+        this.addEventListener('keydown', this._handleKeyDown.bind(this));
+        this.addEventListener('keyup', this._handleKeyUp.bind(this));
+      }
+
+      _removeListeners() {
+        this.removeEventListener('mousedown', this._handleMouseDown);
+        this.removeEventListener('touchstart', this._handleMouseDown);
+        this.removeEventListener('mouseup', this._handleMouseUp);
+        this.removeEventListener('touchend', this._handleMouseUp);
+        this.removeEventListener('keydown', this._handleKeyDown);
+        this.removeEventListener('keyup', this._handleKeyUp);
+      }
+
+      _handleMouseDown(e) {
+        if (e.which === 1) { // left button
+          this.activate(e);
+        }
+      }
+
+      _handleMouseUp(e) {
+        if (e.which === 1) { // left button
+          this.deactivate(e);
+        }
+      }
+
+      _handleKeyDown(e) {
+        if (e.keyCode === 13 || e.keyCode === 32) {
+          e.preventDefault();
+          this.activate(e);
+        }
+      }
+
+      _handleKeyUp(e) {
+        if (e.keyCode === 13 || e.keyCode === 32) {
+          this.deactivate(e);
+        }
+      }
     }
 
-    customElements.define(VaadinElement.is, VaadinElement);
+    customElements.define(VaadinButton.is, VaadinButton);
   </script>
 </dom-module>
