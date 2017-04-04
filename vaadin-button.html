@@ -33,6 +33,8 @@ This program is available under Apache License Version 2.0, available at https:/
       }
     </style>
     <button id="button"
+        aria-label$="[[ariaLabel]]"
+        role="button"
         name="[[name]]"
         value="[[value]]">
       <slot></slot>
@@ -40,6 +42,15 @@ This program is available under Apache License Version 2.0, available at https:/
   </template>
   <script>
     class VaadinButtonElement extends Vaadin.ControlStateMixin(Polymer.Element) {
+      static get properties() {
+        return {
+          /**
+           * Defines a string value that labels the current element for accesibility.
+           */
+          ariaLabel: String
+        };
+      }
+
       static get is() {
         return 'vaadin-button';
       }
