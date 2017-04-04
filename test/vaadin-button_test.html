@@ -16,7 +16,7 @@
   </test-fixture>
 
   <script>
-    describe('sample test', function() {
+    describe('vaadin-button', function() {
       var vaadinButton, nativeButton;
 
       beforeEach(function() {
@@ -40,6 +40,16 @@
           done();
         });
         MockInteractions.downAndUp(vaadinButton);
+      });
+
+      it('should contain appropriate aria role', function() {
+        expect(nativeButton.getAttribute('role')).to.be.eql('button');
+      });
+
+      it('should allow to set the aria-label attribute', function() {
+        expect(nativeButton.hasAttribute('aria-label')).to.be.eql(false);
+        vaadinButton.ariaLabel = 'foo';
+        expect(nativeButton.getAttribute('aria-label')).to.be.eql('foo');
       });
     });
   </script>
