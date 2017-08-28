@@ -12,14 +12,6 @@ This program is available under Apache License Version 2.0, available at https:/
 <dom-module id="vaadin-button-default-theme">
   <template>
     <style>
-      /* TODO: Implement default theme. */
-    </style>
-  </template>
-</dom-module>
-
-<dom-module id="vaadin-button">
-  <template>
-    <style>
       :host {
         display: inline-block;
         position: relative;
@@ -38,6 +30,11 @@ This program is available under Apache License Version 2.0, available at https:/
         outline: none;
       }
     </style>
+  </template>
+</dom-module>
+
+<dom-module id="vaadin-button">
+  <template>
     <button id="button" type="button" part="button">
       <slot></slot>
     </button>
