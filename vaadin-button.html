@@ -12,7 +12,13 @@ This program is available under Apache License Version 2.0, available at https:/
 <dom-module id="vaadin-button-default-theme">
   <template>
     <style>
-      /* TODO: Implement default theme. */
+      :host([focus-ring]) {
+        box-shadow: 0 0 2px 2px Highlight;
+      }
+
+      [part="button"] {
+        outline: none;
+      }
     </style>
   </template>
 </dom-module>
@@ -31,6 +37,7 @@ This program is available under Apache License Version 2.0, available at https:/
         height: 100%;
         margin: 0; /* (normalize.css) Remove the margin in Firefox and Safari. */
         overflow: visible; /* (normalize.css) Show the overflow in IE. */
+        outline: none;
       }
     </style>
     <button id="button" type="button" part="button">
