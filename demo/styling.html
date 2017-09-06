@@ -38,7 +38,7 @@
         <dom-module id="button-styles" theme-for="vaadin-button">
           <template>
             <style>
-              [part~="button"] {
+              :host([theme="default"], [theme="primary"]) [part~="button"] {
                 padding: 6px 12px;
                 font-size: 14px;
                 line-height: 1.4;
@@ -48,43 +48,43 @@
                 color: #333;
               }
 
-              :host([active]) [part~="button"] {
+              :host([theme="default"][active], [theme="primary"][active]) [part~="button"] {
                 box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
               }
 
-              :host([focused]) [part~="button"] {
+              :host([theme="default"][focused], [theme="primary"][focused]) [part~="button"] {
                 outline: 5px auto -webkit-focus-ring-color;
                 outline-offset: -2px;
               }
 
-              :host([focus-ring]) [part~="button"] {
+              :host([theme="default"][focus-ring], [theme="primary"][focus-ring]) [part~="button"] {
                 outline: 5px auto;
                 outline-offset: -2px;
               }
 
-              [part~="button"]::-moz-focus-inner {
+              :host([theme="default"], [theme="primary"]) [part~="button"]::-moz-focus-inner {
                 border: 0;
               }
 
-              :host(.default) [part~="button"] {
+              :host([theme="default"]) [part~="button"] {
                 background-color: #fff;
                 border-color: #ccc;
               }
 
-              :host(.default) [part~="button"]:hover,
-              :host(.default[focused]) [part~="button"] {
+              :host([theme="default"]) [part~="button"]:hover,
+              :host([theme="default"][focused]) [part~="button"] {
                 background-color: #e6e6e6;
                 border-color: #adadad;
               }
 
-              :host(.primary) [part~="button"] {
+              :host([theme="primary"]) [part~="button"] {
                 color: #fff;
                 background-color: #337ab7;
                 border-color: #2e6da4;
               }
 
-              :host(.primary) [part~="button"]:hover,
-              :host(.primary[focused]) [part~="button"] {
+              :host([theme="primary"]) [part~="button"]:hover,
+              :host([theme="primary"][focused]) [part~="button"] {
                 background-color: #286090;
                 border-color: #204d74;
               }
@@ -93,8 +93,8 @@
         </dom-module>
 
         <vaadin-button>Vaadin Button</vaadin-button>
-        <vaadin-button class="default">Default</vaadin-button>
-        <vaadin-button class="primary">Primary</vaadin-button>
+        <vaadin-button theme="default">Default</vaadin-button>
+        <vaadin-button theme="primary">Primary</vaadin-button>
       </template>
     </demo-snippet>
 
