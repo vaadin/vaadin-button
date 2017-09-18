@@ -93,7 +93,9 @@
   </template>
   <script>
     class ButtonStylingDemos extends DemoReadyEventEmitter(ButtonDemo(Polymer.Element)) {
-      static get is() { return 'button-styling-demos'; }
+      static get is() {
+        return 'button-styling-demos';
+      }
     }
     customElements.define(ButtonStylingDemos.is, ButtonStylingDemos);
   </script>

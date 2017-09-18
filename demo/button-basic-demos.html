@@ -54,7 +54,9 @@
   </template>
   <script>
     class ButtonBasicDemos extends DemoReadyEventEmitter(ButtonDemo(Polymer.Element)) {
-      static get is() { return 'button-basic-demos'; }
+      static get is() {
+        return 'button-basic-demos';
+      }
     }
     customElements.define(ButtonBasicDemos.is, ButtonBasicDemos);
   </script>
