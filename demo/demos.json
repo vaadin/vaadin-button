@@ -11,16 +11,5 @@
       "image": ""
      }
   }
-  ,
-  {
-    "name": "Styling",
-    "url": "button-styling-demos",
-    "src": "button-styling-demos.html",
-    "meta": {
-      "title": "vaadin-button Styling Examples",
-      "description": "",
-      "image": ""
-     }
-  }
   ]
 }
