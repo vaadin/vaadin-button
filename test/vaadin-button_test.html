@@ -18,12 +18,12 @@
 
   <script>
     describe('vaadin-button', () => {
-      var down = node => {
-        node.dispatchEvent(new CustomEvent('down'));
+      var mousedown = node => {
+        node.dispatchEvent(new CustomEvent('mousedown'));
       };
 
-      var up = node => {
-        node.dispatchEvent(new CustomEvent('up'));
+      var mouseup = node => {
+        node.dispatchEvent(new CustomEvent('mouseup'));
       };
 
       var vaadinButton, nativeButton;
@@ -64,15 +64,15 @@
       });
 
       it('should have active attribute on down', () => {
-        down(vaadinButton);
+        mousedown(vaadinButton);
 
         expect(vaadinButton.hasAttribute('active')).to.be.true;
       });
 
       it('should not have active attribute after up', () => {
-        down(vaadinButton);
+        mousedown(vaadinButton);
 
-        up(vaadinButton);
+        mouseup(vaadinButton);
 
         expect(vaadinButton.hasAttribute('active')).to.be.false;
       });
@@ -107,7 +107,7 @@
 
       it('should not have active attribute when disabled', () => {
         vaadinButton.disabled = true;
-        down(vaadinButton);
+        mousedown(vaadinButton);
         MockInteractions.keyDownOn(vaadinButton, 13);
         MockInteractions.keyDownOn(vaadinButton, 32);
 
