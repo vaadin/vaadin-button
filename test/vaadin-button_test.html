@@ -6,13 +6,19 @@
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="../../iron-test-helpers/mock-interactions.html">
-  <link rel="import" href="../../test-fixture/test-fixture.html">
   <link rel="import" href="../../polymer/lib/utils/flattened-nodes-observer.html">
   <link rel="import" href="../vaadin-button.html">
 </head>
 
 <body>
   <script>
+
+    const fixtures = {};
+
+    fixtures.default = `
+      <vaadin-button>Vaadin <i>Button</i></vaadin-button>
+    `;
+
     describe('vaadin-button', () => {
       var down = node => {
         node.dispatchEvent(new CustomEvent('down'));
@@ -24,16 +30,15 @@
 
       var vaadinButton, nativeButton, label;
 
+      const fixture = name => {
+        document.body.innerHTML = fixtures[name];
+        return document.body.firstElementChild;
+      };
+
       beforeEach(() => {
-        vaadinButton = document.createElement('vaadin-button');
-        vaadinButton.innerHTML = 'Vaadin <i>Button</i>';
-        document.body.appendChild(vaadinButton);
+        vaadinButton = fixture('default');
         nativeButton = vaadinButton.shadowRoot.querySelector('button');
         label = vaadinButton.shadowRoot.querySelector('[part=label]');
-      });
-
-      afterEach(() => {
-        vaadinButton.parentNode && vaadinButton.parentNode.removeChild(vaadinButton);
       });
 
       for (let i = 0; i < 100; i++) {
