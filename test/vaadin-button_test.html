@@ -12,12 +12,6 @@
 </head>
 
 <body>
-  <test-fixture id="default">
-    <template>
-      <vaadin-button>Vaadin <i>Button</i></vaadin-button>
-    </template>
-  </test-fixture>
-
   <script>
     describe('vaadin-button', () => {
       var down = node => {
@@ -31,7 +25,9 @@
       var vaadinButton, nativeButton, label;
 
       beforeEach(() => {
-        vaadinButton = fixture('default');
+        vaadinButton = document.createElement('vaadin-button');
+        vaadinButton.innerHTML = 'Vaadin <i>Button</i>';
+        vaadinButton.connectedCallback();
         nativeButton = vaadinButton.shadowRoot.querySelector('button');
         label = vaadinButton.shadowRoot.querySelector('[part=label]');
       });
@@ -120,6 +116,7 @@
         });
 
         it('should not have active attribute when disconnected from the DOM', () => {
+          document.body.appendChild(vaadinButton);
           MockInteractions.keyDownOn(vaadinButton, 32);
           vaadinButton.parentNode.removeChild(vaadinButton);
           window.ShadyDOM && window.ShadyDOM.flush();
