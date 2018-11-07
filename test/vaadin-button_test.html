@@ -27,9 +27,13 @@
       beforeEach(() => {
         vaadinButton = document.createElement('vaadin-button');
         vaadinButton.innerHTML = 'Vaadin <i>Button</i>';
-        vaadinButton.connectedCallback();
+        document.body.appendChild(vaadinButton);
         nativeButton = vaadinButton.shadowRoot.querySelector('button');
         label = vaadinButton.shadowRoot.querySelector('[part=label]');
+      });
+
+      afterEach(() => {
+        vaadinButton.parentNode && vaadinButton.parentNode.removeChild(vaadinButton);
       });
 
       for (let i = 0; i < 100; i++) {
