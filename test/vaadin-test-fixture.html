@@ -1,0 +1,12 @@
+
+<script>
+  (function () {
+    const fixtures = Array.from(document.querySelectorAll('test-fixture'));
+
+    window.fixture = fixtureId => {
+      const fixture = fixtures.find(f => f.id === fixtureId);
+      document.body.innerHTML = fixture.firstElementChild.innerHTML;
+      return document.body.firstElementChild;
+    };
+  })();
+</script>
