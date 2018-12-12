@@ -54,6 +54,21 @@
         MockInteractions.downAndUp(vaadinButton);
       });
 
+      it('should fire click event for button', () => {
+        const spy = sinon.spy();
+        vaadinButton.addEventListener('click', spy);
+        vaadinButton.click();
+        expect(spy.called).to.be.true;
+      });
+
+      it('should not fire click event for disabled button', () => {
+        const spy = sinon.spy();
+        vaadinButton.disabled = true;
+        vaadinButton.addEventListener('click', spy);
+        vaadinButton.click();
+        expect(spy.called).to.be.false;
+      });
+
       it('host should have the `button` role', () => {
         expect(vaadinButton.getAttribute('role')).to.be.eql('button');
       });
