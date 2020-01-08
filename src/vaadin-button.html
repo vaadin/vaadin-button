@@ -147,24 +147,7 @@ This program is available under Apache License Version 2.0, available at https:/
           this.$.button.setAttribute('role', 'presentation');
 
           this._addActiveListeners();
-          this._updateLabelAttribute();
-        }
-
-        _updateLabelAttribute() {
-          const label = this.shadowRoot.querySelector('[part~="label"]');
-          const assignedNodes = label.firstElementChild.assignedNodes();
-          if (this._isAssignedNodesEmpty(assignedNodes)) {
-            label.setAttribute('empty', '');
-          } else {
-            label.removeAttribute('empty');
-          }
-        }
-        _isAssignedNodesEmpty(nodes) {
-          // The assigned nodes considered to be empty if there is no slotted content or only one empty text node
-          return nodes.length === 0 ||
-              (nodes.length == 1
-              && nodes[0].nodeType == Node.TEXT_NODE
-              && nodes[0].textContent.trim() === '');
+          window.ShadyDOM && window.ShadyDOM.flush();
         }
 
         /**
