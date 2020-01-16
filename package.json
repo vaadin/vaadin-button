@@ -42,6 +42,7 @@
     "preversion": "magi update-version"
   },
   "devDependencies": {
-    "@vaadin/vaadin-component-dev-dependencies": "^3.0.0"
+    "@vaadin/vaadin-component-dev-dependencies": "^3.0.0",
+    "polymer-cli": "^1.9.11"
   }
 }
