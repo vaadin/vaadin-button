@@ -21,7 +21,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
     - name: Install CLI tools
-      run: npm install -g bower polymer-cli web-component-tester
+      run: npm install -g bower polymer-cli
 
     - name: Install dependencies
       run: npm -q i
@@ -36,7 +36,7 @@ jobs:
       run: npm run lint
 
     - name: Run unit tests
-      run: xvfb-run -s '-screen 0 1024x768x24' wct
+      run: xvfb-run -s '-screen 0 1024x768x24' npm test
 
   polymer-3:
     runs-on: ubuntu-latest
