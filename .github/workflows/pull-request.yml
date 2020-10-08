@@ -16,7 +16,10 @@ jobs:
       run: npm install -g bower polymer-cli
 
     - name: Install dependencies
-      run: npm install
+      run: npm -q i
+
+    - name: Install Bower
+      run: bower -q i
 
     - name: Check version
       run: npm run check
@@ -40,7 +43,7 @@ jobs:
       run: npm install -g bower magi-cli polymer-modulizer yarn
 
     - name: Install dependencies
-      run: npm install
+      run: npm -q i
 
     - name: Convert to P3
       run: magi p3-convert --out . --import-style=name
