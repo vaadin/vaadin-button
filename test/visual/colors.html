@@ -3,129 +3,307 @@
 <head lang="en">
   <meta charset="UTF-8">
 
-  <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
   <script>
     const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
     document.write(`<link rel="import" href="../../theme/${theme}/vaadin-button.html">`);
   </script>
 
-  <custom-style>
+  <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
     <style include="lumo-typography lumo-color">
       body {
         margin: 2em;
       }
     </style>
-  </custom-style>
+  </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
 </head>
 
 <body>
-  <h2>Colors</h2>
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<h2>Colors</h2>`;
+document.body.appendChild($_documentContainer.content);
+</script>
 
   Contrast:
 
-  <vaadin-button theme="primary contrast">
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="primary contrast">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="contrast">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="contrast">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="tertiary contrast">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="tertiary contrast">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <br>Contrast[disabled]:
+document.body.appendChild($_documentContainer.content);
+</script>
 
-  <vaadin-button theme="primary contrast" disabled>
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<br>`;
+document.body.appendChild($_documentContainer.content);
+</script>Contrast[disabled]:
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="primary contrast" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="contrast" disabled>
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="contrast" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="tertiary contrast" disabled>
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="tertiary contrast" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
 
-  <br>Success:
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<br>`;
+document.body.appendChild($_documentContainer.content);
+</script>Success:
 
-  <vaadin-button theme="primary success">
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="primary success">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="success">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="success">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="tertiary success">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="tertiary success">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <br>Success[disabled]:
+document.body.appendChild($_documentContainer.content);
+</script>
 
-  <vaadin-button theme="primary success" disabled>
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<br>`;
+document.body.appendChild($_documentContainer.content);
+</script>Success[disabled]:
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="primary success" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="success" disabled>
-    <span>Button</span>
-  </vaadin-button>
+document.body.appendChild($_documentContainer.content);
+</script>
 
-  <vaadin-button theme="tertiary success" disabled>
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="success" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="tertiary success" disabled="">
+    <span>Button</span>
+  </vaadin-button>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
   
 
-  <br>Error:
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<br>`;
+document.body.appendChild($_documentContainer.content);
+</script>Error:
 
-  <vaadin-button theme="primary error">
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="primary error">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="error">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="error">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="tertiary error">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="tertiary error">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <br>Error[disabled]:
+document.body.appendChild($_documentContainer.content);
+</script>
 
-  <vaadin-button theme="primary error" disabled>
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<br>`;
+document.body.appendChild($_documentContainer.content);
+</script>Error[disabled]:
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="primary error" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="error" disabled>
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="error" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="tertiary error" disabled>
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="tertiary error" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <br>Material variations:
+document.body.appendChild($_documentContainer.content);
+</script>
 
-  <vaadin-button theme="outlined">
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<br>`;
+document.body.appendChild($_documentContainer.content);
+</script>Material variations:
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="outlined">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="contained">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="contained">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <br>Material variations[disabled]:
+document.body.appendChild($_documentContainer.content);
+</script>
 
-  <vaadin-button theme="outlined" disabled>
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<br>`;
+document.body.appendChild($_documentContainer.content);
+</script>Material variations[disabled]:
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="outlined" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
 
-  <vaadin-button theme="contained" disabled>
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<vaadin-button theme="contained" disabled="">
     <span>Button</span>
-  </vaadin-button>
+  </vaadin-button>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
 </body>

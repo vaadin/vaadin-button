@@ -2,10 +2,10 @@
 <head>
   <meta charset="UTF-8">
   <title>vaadin-button tests</title>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../test-fixture/test-fixture.html">
-  <link rel="import" href="../vaadin-button.html">
+  <script src="../../../wct-browser-legacy/browser.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script type="module" src="../../../@polymer/test-fixture/test-fixture.js"></script>
+  <script type="module" src="../vaadin-button.js"></script>
 </head>
 <body>
   <test-fixture id="wrapped-button">
@@ -13,26 +13,30 @@
       <button-test></button-test>
     </template>
   </test-fixture>
-  <script>
-    customElements.whenDefined('vaadin-button').then(() => {
-      class ButtonTest extends Polymer.Element {
-        static get template() {
-          return Polymer.html`
-          <vaadin-button id="button">Old text</vaadin-button>
-          `;
-        }
-        ready() {
-          super.ready();
-          this.$.button.textContent = 'New text';
-        }
-      }
-      customElements.define('button-test', ButtonTest);
-    });
-    describe('vaadin-button in template', () => {
-      it('should flush in ready callback and update inner text', () => {
-        const wrapper = fixture('wrapped-button');
-        expect(wrapper.$.button.innerText.trim()).to.equal('New text');
-      });
-    });
-  </script>
+  <script type="module">
+import '@polymer/test-fixture/test-fixture.js';
+import '../vaadin-button.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+customElements.whenDefined('vaadin-button').then(() => {
+  class ButtonTest extends PolymerElement {
+    static get template() {
+      return html`
+      <vaadin-button id="button">Old text</vaadin-button>
+      `;
+    }
+    ready() {
+      super.ready();
+      this.$.button.textContent = 'New text';
+    }
+  }
+  customElements.define('button-test', ButtonTest);
+});
+describe('vaadin-button in template', () => {
+  it('should flush in ready callback and update inner text', () => {
+    const wrapper = fixture('wrapped-button');
+    expect(wrapper.$.button.innerText.trim()).to.equal('New text');
+  });
+});
+</script>
   </body>
