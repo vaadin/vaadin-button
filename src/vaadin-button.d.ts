@@ -1,5 +1,3 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-
 import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
@@ -7,10 +5,6 @@ import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin
 import {ControlStateMixin} from '@vaadin/vaadin-control-state-mixin/vaadin-control-state-mixin.js';
 
 import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
-
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-
-import {addListener} from '@polymer/polymer/lib/utils/gestures.js';
 
 /**
  * `<vaadin-button>` is a Web Component providing an accessible and customizable button.
@@ -51,10 +45,8 @@ declare class ButtonElement extends
   ControlStateMixin(
   ThemableMixin(
   GestureEventListeners(
-  PolymerElement)))) {
+  HTMLElement)))) {
   readonly focusElement: Element|null;
-  ready(): void;
-  disconnectedCallback(): void;
 }
 
 declare global {

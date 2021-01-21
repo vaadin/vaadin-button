@@ -45,7 +45,7 @@ import { addListener } from '@polymer/polymer/lib/utils/gestures.js';
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  *
- * @extends PolymerElement
+ * @extends HTMLElement
  * @mixes ElementMixin
  * @mixes ControlStateMixin
  * @mixes ThemableMixin
