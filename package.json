@@ -32,9 +32,6 @@
     "@vaadin/vaadin-material-styles": "^1.2.0",
     "@vaadin/vaadin-element-mixin": "^2.4.1"
   },
-  "scripts": {
-    "generate-typings": "gen-typescript-declarations --outDir . --verify"
-  },
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.0",
     "@polymer/iron-icon": "^3.0.0",
