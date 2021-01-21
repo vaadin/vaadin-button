@@ -1,43 +1,28 @@
-<!doctype html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>vaadin-button tests</title>
-  <script src="../../../wct-browser-legacy/browser.js"></script>
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script type="module" src="../../../@polymer/iron-test-helpers/mock-interactions.js"></script>
-  <script type="module" src="../../../@polymer/test-fixture/test-fixture.js"></script>
-  <script type="module" src="../../../@polymer/polymer/lib/utils/flattened-nodes-observer.js"></script>
-  <script type="module" src="../vaadin-button.js"></script>
-</head>
-
-<body>
-  <test-fixture id="default">
-    <template>
-      <vaadin-button>Vaadin <i>Button</i></vaadin-button>
-    </template>
-  </test-fixture>
-
-  <script type="module">
-import '@polymer/iron-test-helpers/mock-interactions.js';
-import '@polymer/test-fixture/test-fixture.js';
+import { expect } from '@esm-bundle/chai';
+import { fixtureSync } from '@open-wc/testing-helpers';
+import { downAndUp, keyDownOn, keyUpOn } from '@polymer/iron-test-helpers/mock-interactions.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import '../vaadin-button.js';
+
 describe('vaadin-button', () => {
-  var down = node => {
+  const down = (node) => {
     node.dispatchEvent(new CustomEvent('down'));
   };
 
-  var up = node => {
+  const up = (node) => {
     node.dispatchEvent(new CustomEvent('up'));
   };
 
-  var vaadinButton, nativeButton, label;
+  let vaadinButton, nativeButton, label;
 
   beforeEach(() => {
-    vaadinButton = fixture('default');
+    vaadinButton = fixtureSync('<vaadin-button>Vaadin <i>Button</i></vaadin-button>');
     nativeButton = vaadinButton.shadowRoot.querySelector('button');
     label = vaadinButton.shadowRoot.querySelector('[part=label]');
+  });
+
+  it('should have a valid version number', () => {
+    expect(vaadinButton.constructor.version).to.match(/^(\d+\.)?(\d+\.)?(\d+)(-(alpha|beta)\d+)?$/);
   });
 
   it('should define button label using light DOM', () => {
@@ -51,11 +36,11 @@ describe('vaadin-button', () => {
     expect(nativeButton.hasAttribute('disabled')).to.be.eql(true);
   });
 
-  it('fires click event', function(done) {
+  it('fires click event', (done) => {
     vaadinButton.addEventListener('click', () => {
       done();
     });
-    MockInteractions.downAndUp(vaadinButton);
+    downAndUp(vaadinButton);
   });
 
   it('host should have the `button` role', () => {
@@ -72,66 +57,54 @@ describe('vaadin-button', () => {
 
   it('should have active attribute on down', () => {
     down(vaadinButton);
-
     expect(vaadinButton.hasAttribute('active')).to.be.true;
   });
 
   it('should not have active attribute after up', () => {
     down(vaadinButton);
-
     up(vaadinButton);
-
     expect(vaadinButton.hasAttribute('active')).to.be.false;
   });
 
   it('should have active attribute on enter', () => {
-    MockInteractions.keyDownOn(vaadinButton, 13);
-
+    keyDownOn(vaadinButton, 13);
     expect(vaadinButton.hasAttribute('active')).to.be.true;
   });
 
-  it('should not have active attribute 500ms after enter', () => {
-    MockInteractions.keyDownOn(vaadinButton, 13);
-
-    MockInteractions.keyUpOn(vaadinButton, 13);
-
+  it('should not have active attribute after enter', () => {
+    keyDownOn(vaadinButton, 13);
+    keyUpOn(vaadinButton, 13);
     expect(vaadinButton.hasAttribute('active')).to.be.false;
   });
 
   it('should have active attribute on space', () => {
-    MockInteractions.keyDownOn(vaadinButton, 32);
-
+    keyDownOn(vaadinButton, 32);
     expect(vaadinButton.hasAttribute('active')).to.be.true;
   });
 
   it('should not have active attribute after space', () => {
-    MockInteractions.keyDownOn(vaadinButton, 32);
-
-    MockInteractions.keyUpOn(vaadinButton, 32);
-
+    keyDownOn(vaadinButton, 32);
+    keyUpOn(vaadinButton, 32);
     expect(vaadinButton.hasAttribute('active')).to.be.false;
   });
 
   it('should not have active attribute when disabled', () => {
     vaadinButton.disabled = true;
     down(vaadinButton);
-    MockInteractions.keyDownOn(vaadinButton, 13);
-    MockInteractions.keyDownOn(vaadinButton, 32);
-
+    keyDownOn(vaadinButton, 13);
+    keyDownOn(vaadinButton, 32);
     expect(vaadinButton.hasAttribute('active')).to.be.false;
   });
 
   it('should not have active attribute when disconnected from the DOM', () => {
-    MockInteractions.keyDownOn(vaadinButton, 32);
+    keyDownOn(vaadinButton, 32);
     vaadinButton.parentNode.removeChild(vaadinButton);
     expect(vaadinButton.hasAttribute('active')).to.be.false;
   });
 
   it('should not have active attribute after blur', () => {
-    MockInteractions.keyDownOn(vaadinButton, 32);
+    keyDownOn(vaadinButton, 32);
     vaadinButton.dispatchEvent(new CustomEvent('blur'));
     expect(vaadinButton.hasAttribute('active')).to.be.false;
   });
 });
-</script>
-</body>
