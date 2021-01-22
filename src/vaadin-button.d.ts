@@ -1,10 +1,10 @@
-import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {ControlStateMixin} from '@vaadin/vaadin-control-state-mixin/vaadin-control-state-mixin.js';
+import { ControlStateMixin } from '@vaadin/vaadin-control-state-mixin/vaadin-control-state-mixin.js';
 
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
 /**
  * `<vaadin-button>` is a Web Component providing an accessible and customizable button.
@@ -40,20 +40,14 @@ import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
-declare class ButtonElement extends
-  ElementMixin(
-  ControlStateMixin(
-  ThemableMixin(
-  GestureEventListeners(
-  HTMLElement)))) {
-  readonly focusElement: Element|null;
+declare class ButtonElement extends ElementMixin(ControlStateMixin(ThemableMixin(GestureEventListeners(HTMLElement)))) {
+  readonly focusElement: Element | null;
 }
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "vaadin-button": ButtonElement;
+    'vaadin-button': ButtonElement;
   }
 }
 
-export {ButtonElement};
+export { ButtonElement };

@@ -50,81 +50,77 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.
  * @mixes ThemableMixin
  * @mixes GestureEventListeners
  */
-class ButtonElement extends
-  ElementMixin(
-    ControlStateMixin(
-      ThemableMixin(
-        GestureEventListeners(PolymerElement)))) {
+class ButtonElement extends ElementMixin(ControlStateMixin(ThemableMixin(GestureEventListeners(PolymerElement)))) {
   static get template() {
     return html`
-    <style>
-      :host {
-        display: inline-block;
-        position: relative;
-        outline: none;
-        white-space: nowrap;
-      }
+      <style>
+        :host {
+          display: inline-block;
+          position: relative;
+          outline: none;
+          white-space: nowrap;
+        }
 
-      :host([hidden]) {
-        display: none !important;
-      }
+        :host([hidden]) {
+          display: none !important;
+        }
 
-      /* Ensure the button is always aligned on the baseline */
-      .vaadin-button-container::before {
-        content: "\\2003";
-        display: inline-block;
-        width: 0;
-      }
+        /* Ensure the button is always aligned on the baseline */
+        .vaadin-button-container::before {
+          content: '\\2003';
+          display: inline-block;
+          width: 0;
+        }
 
-      .vaadin-button-container {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        min-height: inherit;
-        text-shadow: inherit;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+        .vaadin-button-container {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          width: 100%;
+          height: 100%;
+          min-height: inherit;
+          text-shadow: inherit;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
 
-      [part="prefix"],
-      [part="suffix"] {
-        flex: none;
-      }
+        [part='prefix'],
+        [part='suffix'] {
+          flex: none;
+        }
 
-      [part="label"] {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+        [part='label'] {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
 
-      #button {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        cursor: inherit;
-      }
-    </style>
-    <div class="vaadin-button-container">
-      <div part="prefix">
-        <slot name="prefix"></slot>
+        #button {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          cursor: inherit;
+        }
+      </style>
+      <div class="vaadin-button-container">
+        <div part="prefix">
+          <slot name="prefix"></slot>
+        </div>
+        <div part="label">
+          <slot></slot>
+        </div>
+        <div part="suffix">
+          <slot name="suffix"></slot>
+        </div>
       </div>
-      <div part="label">
-        <slot></slot>
-      </div>
-      <div part="suffix">
-        <slot name="suffix"></slot>
-      </div>
-    </div>
-    <button id="button" type="button"></button>
-`;
+      <button id="button" type="button"></button>
+    `;
   }
 
   static get is() {
@@ -165,7 +161,10 @@ class ButtonElement extends
   _addActiveListeners() {
     addListener(this, 'down', () => !this.disabled && this.setAttribute('active', ''));
     addListener(this, 'up', () => this.removeAttribute('active'));
-    this.addEventListener('keydown', e => !this.disabled && [13, 32].indexOf(e.keyCode) >= 0 && this.setAttribute('active', ''));
+    this.addEventListener(
+      'keydown',
+      (e) => !this.disabled && [13, 32].indexOf(e.keyCode) >= 0 && this.setAttribute('active', '')
+    );
     this.addEventListener('keyup', () => this.removeAttribute('active'));
     this.addEventListener('blur', () => this.removeAttribute('active'));
   }
