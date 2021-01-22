@@ -1,152 +1,82 @@
 <!DOCTYPE html>
 
 <head lang="en">
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <title>Button icons tests</title>
+  <script>
+    window.polymerSkipLoadingFontRoboto = true;
+  </script>
+</head>
 
-  <script src="../../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script type="module">
-import '@vaadin/vaadin-lumo-styles/icons.js';
-import '@polymer/iron-icon/iron-icon.js';
-const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
-document.write(`<link rel="import" href="../../theme/${theme}/vaadin-button.html">`);
-</script>
-  <script type="module" src="../../../../@vaadin/vaadin-lumo-styles/icons.js"></script>
-  <script type="module" src="../../../../@polymer/iron-icon/iron-icon.js"></script>
-
-  <!-- FIXME(polymer-modulizer):
-        These imperative modules that innerHTML your HTML are
-        a hacky way to be sure that any mixins in included style
-        modules are ready before any elements that reference them are
-        instantiated, otherwise the CSS @apply mixin polyfill won't be
-        able to expand the underlying CSS custom properties.
-        See: https://github.com/Polymer/polymer-modulizer/issues/154
-        -->
-    <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
+<body>
+  <custom-style>
     <style include="lumo-typography lumo-color">
       body {
         margin: 2em;
       }
     </style>
-  </custom-style>`;
+  </custom-style>
 
-document.body.appendChild($_documentContainer.content);
-</script>
+  <div id="tests">
+    <vaadin-button aria-label="Icon-only button" theme="large icon">
+      <iron-icon slot="prefix" icon="lumo:plus"></iron-icon>
+    </vaadin-button>
 
-</head>
+    <vaadin-button theme="large">
+      <iron-icon slot="prefix" icon="lumo:edit"></iron-icon>
+      <span>Icon prefix</span>
+    </vaadin-button>
 
-<body>
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-$_documentContainer.innerHTML = `<h2>Icons and size presets</h2>`;
-document.body.appendChild($_documentContainer.content);
-</script>
+    <vaadin-button theme="large">
+      <span>Icon suffix</span>
+      <iron-icon slot="suffix" icon="lumo:arrow-right"></iron-icon>
+    </vaadin-button>
 
-  <script type="module">
-const $_documentContainer = document.createElement('template');
+    <vaadin-button aria-label="Icon-only button" theme="icon">
+      <iron-icon slot="prefix" icon="lumo:plus"></iron-icon>
+    </vaadin-button>
 
-$_documentContainer.innerHTML = `<vaadin-button aria-label="Icon-only button" theme="large icon">
-    <iron-icon slot="prefix" icon="lumo:plus"></iron-icon>
-  </vaadin-button>`;
+    <vaadin-button>
+      <iron-icon slot="prefix" icon="lumo:edit"></iron-icon>
+      <span>Icon prefix</span>
+    </vaadin-button>
 
-document.body.appendChild($_documentContainer.content);
-</script>
+    <vaadin-button>
+      <span>Icon suffix</span>
+      <iron-icon slot="suffix" icon="lumo:arrow-right"></iron-icon>
+    </vaadin-button>
 
-  <script type="module">
-const $_documentContainer = document.createElement('template');
+    <vaadin-button aria-label="Icon-only button" theme="small icon">
+      <iron-icon slot="prefix" icon="lumo:plus"></iron-icon>
+    </vaadin-button>
 
-$_documentContainer.innerHTML = `<vaadin-button theme="large">
-    <iron-icon slot="prefix" icon="lumo:edit"></iron-icon>
-    <span>Icon prefix</span>
-  </vaadin-button>`;
+    <vaadin-button theme="small">
+      <iron-icon slot="prefix" icon="lumo:edit"></iron-icon>
+      <span>Icon prefix</span>
+    </vaadin-button>
 
-document.body.appendChild($_documentContainer.content);
-</script>
+    <vaadin-button theme="small">
+      <span>Icon suffix</span>
+      <iron-icon slot="suffix" icon="lumo:arrow-right"></iron-icon>
+    </vaadin-button>
 
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<vaadin-button theme="large">
-    <span>Icon suffix</span>
-    <iron-icon slot="suffix" icon="lumo:arrow-right"></iron-icon>
-  </vaadin-button>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<vaadin-button aria-label="Icon-only button" theme="icon">
-    <iron-icon slot="prefix" icon="lumo:plus"></iron-icon>
-  </vaadin-button>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+    <vaadin-button theme="icon tertiary-inline">
+      <iron-icon icon="lumo:edit"></iron-icon>
+    </vaadin-button>
+  </div>
 
   <script type="module">
-const $_documentContainer = document.createElement('template');
+    import '@polymer/iron-icon/iron-icon.js';
+    import '@vaadin/vaadin-lumo-styles/icons.js';
 
-$_documentContainer.innerHTML = `<vaadin-button>
-    <iron-icon slot="prefix" icon="lumo:edit"></iron-icon>
-    <span>Icon prefix</span>
-  </vaadin-button>`;
+    (async () => {
+      const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
 
-document.body.appendChild($_documentContainer.content);
-</script>
+      await import('../../theme/' + theme + '/vaadin-button.js');
 
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<vaadin-button>
-    <span>Icon suffix</span>
-    <iron-icon slot="suffix" icon="lumo:arrow-right"></iron-icon>
-  </vaadin-button>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<vaadin-button aria-label="Icon-only button" theme="small icon">
-    <iron-icon slot="prefix" icon="lumo:plus"></iron-icon>
-  </vaadin-button>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<vaadin-button theme="small">
-    <iron-icon slot="prefix" icon="lumo:edit"></iron-icon>
-    <span>Icon prefix</span>
-  </vaadin-button>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<vaadin-button theme="small">
-    <span>Icon suffix</span>
-    <iron-icon slot="suffix" icon="lumo:arrow-right"></iron-icon>
-  </vaadin-button>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<vaadin-button theme="icon tertiary-inline">
-    <iron-icon icon="lumo:edit"></iron-icon>
-  </vaadin-button>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+      window.requestAnimationFrame(() => {
+        document.getElementById('tests').dataset.ready = true;
+      });
+    })();
+  </script>
 </body>
