@@ -88,6 +88,11 @@ describe('vaadin-button', () => {
     expect(vaadinButton.hasAttribute('active')).to.be.false;
   });
 
+  it('should not have active attribute on arrow key', () => {
+    keyDownOn(vaadinButton, 37);
+    expect(vaadinButton.hasAttribute('active')).to.be.false;
+  });
+
   it('should not have active attribute when disabled', () => {
     vaadinButton.disabled = true;
     down(vaadinButton);
