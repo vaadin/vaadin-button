@@ -152,9 +152,7 @@ class ButtonElement extends ElementMixin(ControlStateMixin(ThemableMixin(Gesture
 
     // `active` state is preserved when the element is disconnected between keydown and keyup events.
     // reproducible in `<vaadin-date-picker>` when closing on `Cancel` or `Today` click.
-    if (this.hasAttribute('active')) {
-      this.removeAttribute('active');
-    }
+    this.toggleAttribute('active', false);
   }
 
   /** @private */
